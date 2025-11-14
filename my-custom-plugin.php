@@ -24,3 +24,6 @@ function my_custom_plugin_scripts() {
     wp_enqueue_script( 'my-custom-script', plugin_dir_url(__FILE__) . 'js/my-custom-plugin.js', array('jquery'), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'my_custom_plugin_scripts' );
+
+//Test change for pull request
+
