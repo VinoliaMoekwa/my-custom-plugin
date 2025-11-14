@@ -27,3 +27,25 @@ add_action( 'wp_enqueue_scripts', 'my_custom_plugin_scripts' );
 
 //Test change for pull request
 
+//Hook into Gravity Forms after submission
+add_action('gform_after_submission', 'my_custom_plugin_after_submission' 10,2);
+
+function my_custom_plugin_after_submission($entry ,$form ) {
+	//Example :send data to an external site via POST
+	$data = array (
+		'name' => rgar($entry, '1'), //Field ID 1
+		'email' => rgar($entry, '2'), //Field ID 2
+		'describe the theme and occasion for the cake' =>rgar($entry, '3'), //Field ID 3
+	);
+
+	$webhook_url = 'https://webhook.site/e544100e-3dce-4827-9d37-14811098b764';
+
+
+$args = array(
+	'body' => json_encode($data),
+	'headers' => array('Content-Type' => 'application/json'),
+	'timeout' => 15
+);
+
+wp_remote_post($webhook_url, $args);
+}
