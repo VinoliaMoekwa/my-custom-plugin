@@ -1,0 +1,18 @@
+<?php
+/**
+ * Gravity PDF Custom Template Config
+ */
+
+if (!defined('ABSPATH')) {
+	exit;
+}
+
+$template_config = [
+	'name'        => 'Event Ticket Template',
+	'description' => 'PDF ticket including event details, logo, and QR code.',
+	'version'     => '1.0',
+	'author'      => 'Vinolia',
+	'group'       => 'Custom Templates',
+	'template'    => 'pdf-templates.html',
+	'css'         => 'pdf-templates.css',
+];
