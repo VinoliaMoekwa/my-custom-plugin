@@ -13,6 +13,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Deploy to Sandbox
-        run: |
-          rsync -avz .//home/username/sandbox.vinolia.sblik.com/wp-content/plugins/
+        run: 
+              rsync -avz -e "sshpass -p ${{ secrets.Atli05Atle28}} ssh -p ${{ secrets.21 }}" ./ ${{ secrets.vinoliamoekwa@sblik.com }}@${{ secrets.ftp.sblik }}:/home/username/sandbox.vinolia.sblik.com/wp-content/plugins/
+
+          
 
