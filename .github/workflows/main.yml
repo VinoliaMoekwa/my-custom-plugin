@@ -8,13 +8,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      # Step 2: Install sshpass on the runner
+      - name: Install sshpass
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+
+      # Step 3: Deploy plugin to sandbox
       - name: Deploy plugin to sandbox
-        run: 
+        run: |
           rsync -avz -e "sshpass -p ${{ secrets.SANDBOX_PASSWORD }} ssh -p ${{ secrets.SANDBOX_PORT }}" ./ ${{ secrets.SANDBOX_USER }}@${{ secrets.SANDBOX_HOST }}:/home/vinoliamoekwa/sandbox.vinolia.sblik.com/wp-content/plugins/
-
-          
-
