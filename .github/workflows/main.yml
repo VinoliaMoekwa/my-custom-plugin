@@ -1,4 +1,4 @@
-name: Deploy Plugin to Sandbox via FTP
+name: Deploy Plugin to Sandbox via FTP (lftp)
 
 on:
   push:
@@ -8,19 +8,16 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Checkout your repo
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      # Step 2: Deploy via FTP
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
-        with:
-          server: ${{ secrets.SANDBOX_HOST }}
-          username: ${{ secrets.SANDBOX_USER }}
-          password: ${{ secrets.SANDBOX_PASSWORD }}
-          port: ${{ secrets.SANDBOX_PORT }}   # should be 21
-          local-dir: "./my-custom-plugin"                      # the folder containing your plugin code
-          server-dir: "/sandbox.vinolia.sblik.com/wp-content/plugins/"
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: FTP Deploy via lftp
+        run: |
+          lftp -c "
+          open -u ${{ secrets.SANDBOX_USER }},${{ secrets.SANDBOX_PASSWORD }} -p ${{ secrets.SANDBOX_PORT }} ${{ secrets.SANDBOX_HOST }};
+          mirror -R ./my-custom-plugin /sandbox.vinolia.sblik.com/wp-content/plugins/ --verbose --only-newer
+          "
