@@ -1,4 +1,4 @@
-name: Deploy to Sandbox
+name: Deploy Plugin to Sandbox via FTP
 
 on:
   push:
@@ -10,17 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout repo
+      # Step 1: Checkout your repo
+      - name: Checkout Repo
         uses: actions/checkout@v3
 
-      # Step 2: Install sshpass on the runner
-      - name: Install sshpass
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y sshpass
-
-      # Step 3: Deploy plugin to sandbox
-      - name: Deploy plugin to sandbox
-        run: |
-          rsync -avz -e "sshpass -p ${{ secrets.SANDBOX_PASSWORD }} ssh -p ${{ secrets.SANDBOX_PORT }}" ./ ${{ secrets.SANDBOX_USER }}@${{ secrets.SANDBOX_HOST }}:/home/vinoliamoekwa/sandbox.vinolia.sblik.com/wp-content/plugins/
+      # Step 2: Deploy via FTP
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.SANDBOX_HOST }}
+          username: ${{ secrets.SANDBOX_USER }}
+          password: ${{ secrets.SANDBOX_PASSWORD }}
+          port: ${{ secrets.SANDBOX_PORT }}   # should be 21
+          local-dir: "./my-custom-plugin"                      # the folder containing your plugin code
+          server-dir: "/sandbox.vinolia.sblik.com/wp-content/plugins/"
