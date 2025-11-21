@@ -14,7 +14,7 @@ jobs:
 
       - name: Deploy plugin to sandbox
         run: 
-          rsync -avz -e "sshpass -p ${{ secrets.SANDBOX_PASSWORD }} ssh -p ${{ secrets.SANDBOX_PORT }}" ./ ${{ secrets.SANDBOX_USER }}@${{ secrets.SANDBOX_HOST }}:/home/username/sandbox.vinolia.sblik.com/wp-content/plugins/
+          rsync -avz -e "sshpass -p ${{ secrets.SANDBOX_PASSWORD }} ssh -p ${{ secrets.SANDBOX_PORT }}" ./ ${{ secrets.SANDBOX_USER }}@${{ secrets.SANDBOX_HOST }}:/home/vinoliamoekwa@sblik.com/sandbox.vinolia.sblik.com/wp-content/plugins/
 
           
 
