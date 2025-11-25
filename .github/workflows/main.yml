@@ -21,3 +21,4 @@ jobs:
           open -u ${{ secrets.SANDBOX_USER }},${{ secrets.SANDBOX_PASSWORD }} -p ${{ secrets.SANDBOX_PORT }} ${{ secrets.SANDBOX_HOST }};
           mirror -R ./my-custom-plugin /sandbox.vinolia.sblik.com/wp-content/plugins/ --verbose --only-newer
           "
+#running
