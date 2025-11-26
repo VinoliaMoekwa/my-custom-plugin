@@ -13,6 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// Test deploy - do not remove
+
+
 // Enqueue custom CSS
 function my_custom_plugin_styles() {
 	wp_enqueue_style( 'my-custom-plugin', plugin_dir_url(__FILE__) . 'css/my-custom-plugin.css', array(), '1.0' );
@@ -53,6 +56,12 @@ function my_custom_plugin_after_submission($entry ,$form ) {
 add_filter('gfpdf_register_templates', function($templates) {
 	$templates[] = plugin_dir_path(__FILE__) . 'pdf-templates/event-ticket/config.php';
 	return $templates;
+
+	// Example
+	function test_plugin_change() {
+		return "Hello world  from GitHub Actions!";
+	}
+
 });
 
 
