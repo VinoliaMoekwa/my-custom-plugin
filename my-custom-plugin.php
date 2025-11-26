@@ -62,6 +62,8 @@ add_filter('gfpdf_register_templates', function($templates) {
 		return "Hello world  from GitHub Actions!";
 	}
 
+	//Test Deployment change
+
 });
 
 
