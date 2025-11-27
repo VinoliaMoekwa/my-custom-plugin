@@ -59,11 +59,12 @@ add_filter('gfpdf_register_templates', function($templates) {
 
 	// Example
 	function test_plugin_change() {
-		return "Hello world  from GitHub Actions!";
+		return "Hello world  from GitHub Workflow";
 	}
 
 	//Test Deployment change
 	// Test again
+	//Test for loom
 
 });
 
