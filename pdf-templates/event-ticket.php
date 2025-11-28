@@ -3,10 +3,16 @@
 /** @var array $entry */
 /** @var array $form */
 /*
-* Gravity PDF Custom Template - Event Ticket
- * Name: Event Ticket Template
- * Description: PDF ticket including event details, Logo, QR code
+/**
+ * Template Name: My Custom Template
+ * Version: 1.0
+ * Description: Custom PDF layout for event tickets.
+ * Author: Vinolia Moekwa
+ * Group: Custom Templates
+ * Required PDF Version: 6.0
  */
+
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
